@@ -1,0 +1,28 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.runner_os }}
+    continue-on-error: true
+    strategy:
+      matrix:
+        runner_os:
+          - ubuntu-latest
+          - macos-latest
+        emacs_version:
+          - 29.1
+          - 29.2
+          - 29.3
+          - 29.4
+          - 30.1
+          - 30.2
+    steps:
+    - uses: purcell/setup-emacs@master
+      with:
+        version: ${{ matrix.emacs_version }}
+
+    - uses: actions/checkout@v6
+    - name: Check startup
+      run: ./test-startup.sh
