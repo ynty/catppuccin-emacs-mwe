@@ -22,9 +22,10 @@ jobs:
     - uses: purcell/setup-emacs@master
       with:
         version: ${{ matrix.emacs_version }}
-
     - uses: actions/checkout@v6
     - name: Check startup
       run: |
         chmod +x ./test-startup.sh
         ./test-startup.sh
+    - name: Check whether theme is properly built
+      run: ls -n ./straight/build/catppuccin-theme
