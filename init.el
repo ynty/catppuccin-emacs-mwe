@@ -16,3 +16,5 @@
 
 (straight-use-package 'catppuccin-theme)
 (load-theme 'catppuccin :no-confirm)
+
+(straight-use-package 'company)
